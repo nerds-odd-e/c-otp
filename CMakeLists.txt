@@ -24,14 +24,5 @@ endif()
 
 set(CMAKE_C_STANDARD 99)
 
-set(Main_SRCS birthday.h birthday.c today_provider.h today_provider.c)
-
-add_library(core ${Main_SRCS})
-add_executable(c-otp main.c)
-target_link_libraries(c-otp core)
-
-set(Test_SRCS stub_today_provider.h birthday_unittest.cc)
-
-add_executable(c-otp-test ${Test_SRCS})
-target_link_libraries(c-otp-test gtest gtest_main core)
-
+add_subdirectory(main)
+add_subdirectory(test)

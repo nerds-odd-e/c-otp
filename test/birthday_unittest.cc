@@ -1,7 +1,7 @@
 #include "gtest/gtest.h"
 extern "C"
 {
-#include "birthday.h"
+#include "../main/birthday.h"
 #include "stub_today_provider.h"
 }
 

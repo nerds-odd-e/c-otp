@@ -7,6 +7,6 @@ To build the code and test, please:
     cmake ..
     make
 ```
-To run the code, please execute `./c-otp`
+To run the code, please execute `./main/c-otp`
 
-To run the code, please execute `./c-otp-test`
+To run the code, please execute `./test/c-otp-test`
