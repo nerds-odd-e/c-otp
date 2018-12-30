@@ -8,3 +8,5 @@ To build the code and test, please:
     make
 ```
 To run the code, please execute `./c-otp`
+
+To run the code, please execute `./c-otp-test`
