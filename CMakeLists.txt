@@ -1,5 +1,5 @@
-cmake_minimum_required(VERSION 3.12)
-project(c-otp C)
+cmake_minimum_required(VERSION 2.8.11)
+project(c-otp C CXX)
 configure_file(CMakeLists.txt.in googletest-download/CMakeLists.txt)
 execute_process(COMMAND ${CMAKE_COMMAND} -G "${CMAKE_GENERATOR}" .
         RESULT_VARIABLE result
@@ -24,4 +24,14 @@ endif()
 
 set(CMAKE_C_STANDARD 99)
 
-add_executable(c-otp main.c birthday.h birthday.c today_provider.h today_provider.c)
+set(Main_SRCS birthday.h birthday.c today_provider.h today_provider.c)
+
+add_library(core ${Main_SRCS})
+add_executable(c-otp main.c)
+target_link_libraries(c-otp core)
+
+set(Test_SRCS stub_today_provider.h)
+
+add_executable(c-otp-test ${Test_SRCS})
+target_link_libraries(c-otp-test gtest gtest_main core)
+
