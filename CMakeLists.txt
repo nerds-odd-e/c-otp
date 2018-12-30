@@ -24,4 +24,4 @@ endif()
 
 set(CMAKE_C_STANDARD 99)
 
-add_executable(c-otp main.c birthday.h birthday.c)
+add_executable(c-otp main.c birthday.h birthday.c today_provider.h today_provider.c)
