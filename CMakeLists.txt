@@ -1,5 +1,5 @@
 cmake_minimum_required(VERSION 3.12)
-project(c_otp C)
+project(c-otp C)
 configure_file(CMakeLists.txt.in googletest-download/CMakeLists.txt)
 execute_process(COMMAND ${CMAKE_COMMAND} -G "${CMAKE_GENERATOR}" .
         RESULT_VARIABLE result
@@ -24,4 +24,4 @@ endif()
 
 set(CMAKE_C_STANDARD 99)
 
-add_executable(c_otp main.c)
+add_executable(c-otp main.c birthday.h birthday.c)
