@@ -15,11 +15,19 @@ int getRandom_custom_fake(const char * userName, char * randomCode, size_t len) 
     return 0;
 }
 
-TEST(AuthenticationServiceTest, IsValid) {
-    getRandom_fake.custom_fake = getRandom_custom_fake;
-    stubRandomCode = "000000";
+class AuthenticationServiceTest : public testing::Test {
+protected:
+    void SetUp() {
+        RESET_FAKE(getRandom);
+    }
+    void givenRandomCode(const char * randomCode) {
+        getRandom_fake.custom_fake = getRandom_custom_fake;
+        stubRandomCode = randomCode;
+    }
+};
+
+TEST_F(AuthenticationServiceTest, IsValid) {
+    givenRandomCode("000000");
 
     ASSERT_TRUE(isValid("joey", "91000000"));
 }
-
-
