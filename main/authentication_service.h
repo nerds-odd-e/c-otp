@@ -3,6 +3,6 @@
 
 #include "stdbool.h"
 
-bool isValid(char * userName, char * password);
+bool isValid(const char * userName, const char * password);
 
 #endif //C_OTP_AUTHENTICATION_SERVICE_H

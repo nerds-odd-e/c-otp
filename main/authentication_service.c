@@ -4,25 +4,32 @@
 #include "profile_dao.h"
 #include "rsa_token_dao.h"
 #include <stdio.h>
+#include <assert.h>
 
-bool isValid(char *userName, char *password) {
+#define MAX_PASSWORD_LEN 60
+
+bool isValid(const char *userName, const char *password) {
+    assert(userName);
+    assert(password);
     char * basePassword = getPassword(userName);
 
-    char * randomCode;
-    getRandom(randomCode, userName);
-
-    char *validPassword = (char *)malloc(sizeof(basePassword) + sizeof(randomCode) + 1);
-    if (validPassword == NULL)
+    char randomCode[7];
+    if (!getRandom(userName, randomCode, sizeof(randomCode))) {
+        printf("randomCode by fake: %s\n", randomCode);
+    } else {
         return false;
+    }
 
-    strcat(validPassword, basePassword);
-    strcat(validPassword, randomCode);
+    char validPassword[MAX_PASSWORD_LEN];
+    assert(MAX_PASSWORD_LEN >= strlen(basePassword) + strlen(randomCode) + 1);
+    sprintf(validPassword, "%s%s", basePassword, randomCode);
 
-    bool isValid = password == validPassword;
+    printf("password: %s\n", password);
+    printf("validPassword: %s\n", validPassword);
 
-    free(validPassword);
+    int result = strcmp(password, validPassword);
 
-    if (isValid) {
+    if (!result) {
         return true;
     } else {
         return false;
