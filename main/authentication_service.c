@@ -3,6 +3,7 @@
 #include "authentication_service.h"
 #include "profile_dao.h"
 #include "rsa_token_dao.h"
+#include "logger.h"
 #include <stdio.h>
 #include <assert.h>
 
@@ -32,6 +33,7 @@ bool isValid(const char *userName, const char *password) {
     if (!result) {
         return true;
     } else {
+        logMsg("invalid login");
         return false;
     }
 }
