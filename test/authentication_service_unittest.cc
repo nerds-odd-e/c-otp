@@ -31,3 +31,9 @@ TEST_F(AuthenticationServiceTest, IsValid) {
 
     ASSERT_TRUE(isValid("joey", "91000000"));
 }
+
+TEST_F(AuthenticationServiceTest, IsNotValid) {
+    givenRandomCode("111111");
+
+    ASSERT_FALSE(isValid("joey", "91000000"));
+}
