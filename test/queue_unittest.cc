@@ -43,3 +43,13 @@ TEST_F(QueueTest, popRightAfterInit) {
 
     ASSERT_EQ(code, QUEUE_EMPTY);
 }
+
+TEST_F(QueueTest, pushPushAndPop) {
+    queue_push(q, 10);
+    queue_push(q, 20);
+    int value = 0;
+
+    queue_pop(q, &value);
+
+    ASSERT_EQ(value, 10);
+}
