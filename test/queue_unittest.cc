@@ -24,3 +24,14 @@ TEST_F(QueueTest, push) {
     ASSERT_EQ(q->size, 1);
     ASSERT_TRUE(!code);
 }
+
+TEST_F(QueueTest, pushAndPop) {
+    queue_push(q, 10);
+    int value = 0;
+
+    int code = queue_pop(q, &value);
+
+    ASSERT_TRUE(!code);
+    ASSERT_EQ(value, 10);
+    ASSERT_EQ(q->size, 0);
+}
