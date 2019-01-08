@@ -1,15 +1,26 @@
 #include "gtest/gtest.h"
+
 extern "C"
 {
 #include "../main/queue.h"
 }
 
-namespace {
+class QueueTest : public testing::Test {
+protected:
+    queue *q;
 
-    TEST(QueueTest, init) {
-        queue * q = init_queue();
-
-        ASSERT_EQ(q->size, 0);
+    void SetUp() {
+        q = queue_init();
     }
+};
 
+TEST_F(QueueTest, init) {
+    ASSERT_EQ(q->size, 0);
+}
+
+TEST_F(QueueTest, push) {
+    int code = queue_push(q, 10);
+
+    ASSERT_EQ(q->size, 1);
+    ASSERT_TRUE(!code);
 }
