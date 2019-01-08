@@ -11,15 +11,19 @@ FAKE_VALUE_FUNC(int, pthread_mutex_init, pthread_mutex_t *, const pthread_mutexa
 FAKE_VALUE_FUNC(int, pthread_mutex_lock, pthread_mutex_t *);
 FAKE_VALUE_FUNC(int, pthread_mutex_unlock, pthread_mutex_t *);
 FAKE_VALUE_FUNC(int, pthread_mutex_destroy, pthread_mutex_t *);
+FAKE_VALUE_FUNC(queue*, queue_malloc);
 
 class QueueTest : public testing::Test {
 protected:
     queue *q;
+    queue malloc_q;
 
     void SetUp() {
+        queue_malloc_fake.return_val = &malloc_q;
         q = queue_init();
         RESET_FAKE(pthread_mutex_lock);
         RESET_FAKE(pthread_mutex_unlock);
+        RESET_FAKE(queue_malloc);
     }
 };
 
@@ -90,4 +94,14 @@ TEST_F(QueueTest, pushLock) {
 
     ASSERT_EQ(pthread_mutex_lock_fake.call_count, 1);
     ASSERT_EQ(pthread_mutex_unlock_fake.call_count, 1);
+}
+
+TEST_F(QueueTest, initShouldMalloc) {
+    queue malloc_q;
+    queue_malloc_fake.return_val = &malloc_q;
+
+    q = queue_init();
+
+    ASSERT_EQ(queue_malloc_fake.call_count, 1);
+    ASSERT_EQ(q, &malloc_q);
 }

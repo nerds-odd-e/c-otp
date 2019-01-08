@@ -14,6 +14,8 @@ typedef struct {
     pthread_mutex_t lock;
 } queue;
 
+queue * queue_malloc();
+
 queue * queue_init();
 
 int queue_push(queue *q, int value);

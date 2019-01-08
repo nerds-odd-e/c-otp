@@ -1,8 +1,7 @@
-#include <stdlib.h>
 #include "queue.h"
 
 queue *queue_init() {
-    queue * q = (queue * )malloc(sizeof(queue));
+    queue * q = queue_malloc();
     q->size = 0;
     q->readCursor = 0;
     q->writeCursor = 0;
@@ -27,3 +26,4 @@ int queue_pop(queue *q, int *value) {
     q->size--;
     return 0;
 }
+
