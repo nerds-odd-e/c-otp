@@ -18,7 +18,7 @@ int queue_pop(queue *q, int *value) {
     if (q->size == 0) {
         return QUEUE_EMPTY;
     }
-    *value = q->values[q->cursor];
+    *value = q->values[q->cursor++];
     q->size--;
     return 0;
 }
