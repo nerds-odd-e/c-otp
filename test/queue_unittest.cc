@@ -64,3 +64,14 @@ TEST_F(QueueTest, pushPushPopAndPop) {
 
     ASSERT_EQ(value, 20);
 }
+
+TEST_F(QueueTest, pushPopAndPush) {
+    queue_push(q, 10);
+    int value = 0;
+    queue_pop(q, &value);
+    queue_push(q, 20);
+
+    queue_pop(q, &value);
+
+    ASSERT_EQ(value, 20);
+}

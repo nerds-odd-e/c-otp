@@ -7,7 +7,8 @@
 typedef struct {
     int size;
     int values[MAX_LEN];
-    int cursor;
+    int readCursor;
+    int writeCursor;
 } queue;
 
 queue * queue_init();
