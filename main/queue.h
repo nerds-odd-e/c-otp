@@ -2,6 +2,7 @@
 #define C_OTP_QUEUE_H
 
 #define MAX_LEN 1000
+#define QUEUE_EMPTY -1
 
 typedef struct {
     int size;
