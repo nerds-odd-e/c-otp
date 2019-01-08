@@ -29,3 +29,8 @@ int queue_pop(queue *q, int *value) {
     return 0;
 }
 
+int queue_destroy(queue *q) {
+    queue_free(q);
+    return 0;
+}
+

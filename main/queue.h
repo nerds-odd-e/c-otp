@@ -16,10 +16,14 @@ typedef struct {
 
 queue * queue_malloc();
 
+void queue_free(queue* q);
+
 queue * queue_init();
 
 int queue_push(queue *q, int value);
 
 int queue_pop(queue *q, int* value);
+
+int queue_destroy(queue* q);
 
 #endif //C_OTP_QUEUE_H
