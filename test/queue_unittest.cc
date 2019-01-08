@@ -3,7 +3,14 @@
 extern "C"
 {
 #include "../main/queue.h"
+#include <pthread.h>
+#include "fff.h"
 }
+
+FAKE_VALUE_FUNC(int, pthread_mutex_init, pthread_mutex_t *, const pthread_mutexattr_t *);
+FAKE_VALUE_FUNC(int, pthread_mutex_lock, pthread_mutex_t *);
+FAKE_VALUE_FUNC(int, pthread_mutex_unlock, pthread_mutex_t *);
+FAKE_VALUE_FUNC(int, pthread_mutex_destroy, pthread_mutex_t *);
 
 class QueueTest : public testing::Test {
 protected:
@@ -11,6 +18,8 @@ protected:
 
     void SetUp() {
         q = queue_init();
+        RESET_FAKE(pthread_mutex_lock);
+        RESET_FAKE(pthread_mutex_unlock);
     }
 };
 
@@ -74,4 +83,11 @@ TEST_F(QueueTest, pushPopAndPush) {
     queue_pop(q, &value);
 
     ASSERT_EQ(value, 20);
+}
+
+TEST_F(QueueTest, pushLock) {
+    queue_push(q, 10);
+
+    ASSERT_EQ(pthread_mutex_lock_fake.call_count, 1);
+    ASSERT_EQ(pthread_mutex_unlock_fake.call_count, 1);
 }

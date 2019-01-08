@@ -6,13 +6,16 @@ queue *queue_init() {
     q->size = 0;
     q->readCursor = 0;
     q->writeCursor = 0;
+    pthread_mutex_init(&q->lock, NULL);
 
     return q;
 }
 
 int queue_push(queue *q, int value) {
+    pthread_mutex_lock(&q->lock);
     q->values[q->writeCursor++] = value;
     q->size++;
+    pthread_mutex_unlock(&q->lock);
     return 0;
 }
 
