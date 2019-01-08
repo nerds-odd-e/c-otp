@@ -2,10 +2,12 @@
 
 queue *queue_init() {
     queue * q = queue_malloc();
-    q->size = 0;
-    q->readCursor = 0;
-    q->writeCursor = 0;
-    pthread_mutex_init(&q->lock, NULL);
+    if (q) {
+        q->size = 0;
+        q->readCursor = 0;
+        q->writeCursor = 0;
+        pthread_mutex_init(&q->lock, NULL);
+    }
 
     return q;
 }

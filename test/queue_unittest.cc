@@ -105,3 +105,12 @@ TEST_F(QueueTest, initShouldMalloc) {
     ASSERT_EQ(queue_malloc_fake.call_count, 1);
     ASSERT_EQ(q, &malloc_q);
 }
+
+TEST_F(QueueTest, initShouldReturnNullCodeWhenMallocFailed) {
+    queue_malloc_fake.return_val = NULL;
+
+    q = queue_init();
+
+    ASSERT_EQ(queue_malloc_fake.call_count, 1);
+    ASSERT_EQ(q, (queue*)NULL);
+}
