@@ -7,7 +7,7 @@ struct tm today;
 
 void setToday(int month, int day) {
     time_t now = time(0);
-    today = *localtime(&now);
+    localtime_r(&now, &today);
     today.tm_mon = month - 1;
     today.tm_mday = day;
 }
