@@ -1,9 +1,9 @@
 #include "gtest/gtest.h"
 extern "C"
 {
-#include "../main/include/authentication_service.h"
-#include "../main/include/rsa_token_dao.h"
-#include "../main/include/logger.h"
+#include "authentication_service.h"
+#include "rsa_token_dao.h"
+#include "logger.h"
 #include "fff.h"
 }
 
