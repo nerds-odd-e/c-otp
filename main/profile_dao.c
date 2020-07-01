@@ -1,6 +1,5 @@
 #include "profile_dao.h"
 #include "map.h"
-#include "stdio.h"
 
 static map_str_t profiles;
 

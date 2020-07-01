@@ -2,7 +2,7 @@
 
 extern "C"
 {
-#include "../main/queue.h"
+#include "../main/include/queue.h"
 #include <pthread.h>
 #include "fff.h"
 }

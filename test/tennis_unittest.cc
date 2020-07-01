@@ -2,7 +2,7 @@
 
 extern "C"
 {
-#include "../main/tennis.h"
+#include "../main/include/tennis.h"
 }
 
 class TennisTest : public testing::Test {

@@ -1,4 +1,3 @@
-#include <stdlib.h>
 #include <string.h>
 #include "authentication_service.h"
 #include "profile_dao.h"
