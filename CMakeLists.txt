@@ -26,4 +26,5 @@ set(CMAKE_C_STANDARD 99)
 
 include_directories(${CMAKE_CURRENT_SOURCE_DIR}/main/include)
 add_subdirectory(main)
+add_subdirectory(emock)
 add_subdirectory(test)
